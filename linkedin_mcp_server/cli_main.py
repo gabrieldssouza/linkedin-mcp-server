@@ -606,7 +606,7 @@ def main() -> None:
                     host=config.server.host,
                     port=config.server.port,
                     path=config.server.path,
-                    host_origin_protection=False,
+                    host_origin_protection=True,
                 )
             else:
                 mcp.run(transport=transport)

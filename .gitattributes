@@ -1,0 +1,16 @@
+# The image is Linux and `COPY` takes the working tree verbatim. Git for
+# Windows ships `core.autocrlf=true` in its system config, which checks every
+# text file out as CRLF; `docker-entrypoint.sh` then reaches the container with
+# a `#!/bin/bash\r` shebang, the kernel looks for an interpreter literally
+# named `/bin/bash\r`, and Tini reports `exec linkedin-mcp-entrypoint failed:
+# No such file or directory` with exit 127. Pinning LF here is what keeps a
+# Windows checkout able to build a working image.
+* text=auto eol=lf
+
+# Binary: never touched, on any platform.
+*.png binary
+*.ico binary
+*.jpg binary
+*.gif binary
+*.zip binary
+*.mcpb binary
